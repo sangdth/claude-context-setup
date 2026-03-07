@@ -23,6 +23,11 @@ claude-context is an MCP (Model Context Protocol) server that indexes your codeb
 
 ## Setup
 
+```
+OPENAI_API_KEY='sk-your-key'
+MILVUS_ADDRESS=127.0.0.1:19530
+```
+
 ### 1. Start Milvus and necessary services
 
 ```bash
@@ -31,12 +36,12 @@ docker compose up -d
 
 This starts four services:
 
-| Service | Port                            | Description                 |
-| ------- | ------------------------------- | --------------------------- |
-| Milvus  | `19530` (gRPC), `9091` (health) | Vector database             |
-| Attu    | `8000`                          | Milvus GUI                  |
-| MinIO   | `9000` (API), `9001` (console)  | Object storage for Milvus   |
-| etcd    | `2379`                          | Metadata storage for Milvus |
+| Service Port | Description                     |
+| ------------ | ------------------------------- | --------------------------- |
+| Milvus       | `19530` (gRPC), `9091` (health) | Vector database             |
+| Attu         | `8000`                          | Milvus GUI                  |
+| MinIO        | `9000` (API), `9001` (console)  | Object storage for Milvus   |
+| etcd         | `2379`                          | Metadata storage for Milvus |
 
 Verify Milvus is healthy:
 
@@ -58,10 +63,7 @@ or manually:
     "claude-context": {
       "type": "stdio",
       "command": "npx",
-      "args": ["@zilliz/claude-context-mcp@latest"],
-      "env": {
-        "MILVUS_ADDRESS": "127.0.0.1:19530"
-      }
+      "args": ["@zilliz/claude-context-mcp@latest"]
     }
 ```
 
